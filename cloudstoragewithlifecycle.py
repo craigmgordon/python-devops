@@ -3,22 +3,21 @@
 # cloudstoragewithlifecycle.py
 # It is an example that handles Cloud Storage buckets on Google Cloud Platform (GCP).
 # Create a new Cloud Storage bucket.
-# with lifecycle and retention policy and only access for one service account
+# with lifecycle and retention policy 
 # You must provide 1 parameter:
 # BUCKET_NAME = Name of the bucket
 
 import sys
 from google.cloud import storage
-from google.cloud import exceptions
 
 def create_bucket_with_policy():
-
+    """_summary_
+    """
     project_id = 'devops-project-399815'
-    service_account_email = 'sa-automation@devops-project-399815.iam.gserviceaccount.com'
     # retention period in seconds
     retention_period = 604800
-    STORAGE_LOCATION           = 'europe-west2'   # Cloud Storage location
-  
+    storage_location = 'europe-west2'   # Cloud Storage location
+
     # Make a list of command line arguments, omitting the [0] element
     # which is the script itself.
     args = sys.argv[1:]
@@ -31,7 +30,7 @@ def create_bucket_with_policy():
     print('Bucket name: ' + bucket_name)
 
     print('Creating bucket ...')
-    
+
     # Instantiate the client.
     client = storage.Client()
 
@@ -48,14 +47,14 @@ def create_bucket_with_policy():
         # set 7 day retention period
         bucket.retention_period = retention_period
         # Create the bucket object.
-        bucket.create(location=STORAGE_LOCATION)
-        
+        bucket.create(location=storage_location)
+
         print(f'Bucket {bucket_name} created with retention policy and lifecycle rules.')
-    except Exception as e:
-        print('Error: ',e)
-  
+    except Exception as err:
+        print('Error: ',err)
+
     return
-  
+
 
 # This is the standard boilerplate that calls the main() function.
 if __name__ == '__main__':

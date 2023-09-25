@@ -38,7 +38,7 @@ def main():
         print('\nCreated')
     except Exception:
         print('Error: Bucket already exists!!')
-        pass
+    
   
     return
   
