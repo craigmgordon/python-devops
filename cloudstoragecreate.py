@@ -8,7 +8,7 @@
 
 import sys
 from google.cloud import storage
-from google.cloud.exceptions import Conflict
+from google.cloud import error_reporting
 
 def main():
 
@@ -36,7 +36,7 @@ def main():
         # Create the bucket object.
         bucket.create(location=STORAGE_LOCATION)
         print('\nCreated')
-    except Conflict:
+    except Exception:
         print('Error: Bucket already exists!!')
         pass
   
